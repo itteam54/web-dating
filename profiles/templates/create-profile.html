@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block page_title %}Изменить профиль{% endblock %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/user_profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<section>
+    <p class="h1_index_reg">Информация о профиле</p>
+    <p class="alert">Верно описанный профиль может увеличить твою привлекательность в 4 раза.
+    <br>Поэтому постарайся быть более честным, заполняя информацию о себе.</p>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <section class="about_user">
+          {% for field in profile_form %}
+          <div class="registration_fields">
+            <label >{{ field.label }}</label>
+                      {{ field }}
+          </div>
+          {% endfor %}
+        </section>
+        <section class="edit_user">
+        <label>Фотографии: </label> {{ formset.management_form }}
+        {% for form in formset %}
+        <div id="field_{{form.id.id_for_label}}" class="profile-photo-container">
+
+            <div {% if not form.initial.image %}style="display: none;" {% endif %}>
+                <i onclick="delete_profile_photo( event, 'field_{{form.id.id_for_label}}' )" class="far fa-trash-alt"></i>
+            </div>
+            {{form}}
+            <div>
+                {% if form.initial.image %}
+                <div style="background-image: url({{form.initial.image.url}})"></div>
+                {% else %}
+                <div style="background-image: none"></div>
+                {% endif %}
+            </div>
+
+            {% for hidden in form %} {% if not 'image' in hidden.auto_id %}
+            <input hidden type="checkbox" name="delete" value="{{ hidden.value }}"> {% endif %} {% endfor %}
+
+        </div>
+        {% endfor %}
+        <input type="submit" value="UPDATE" name="message_submit">
+        </section>
+    </form>
+</section>
+{% endblock %}

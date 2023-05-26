@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_title %}Верификация{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/verif.css' %}">
+{% endblock %}
+{% block content %}
+
+<section>
+      <p class="h1_index_reg">Верификация</p>
+      <p class="reg_index_p"> Пожалуйста подождите немного. Изменения не прошли верификацию. Это может занять некоторое время.</p>
+      <p class="reg_index_p"><a class="" href="{% url 'index' %}">Начать поиск</a></p>
+</section>
+{% endblock %}

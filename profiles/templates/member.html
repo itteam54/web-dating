@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block page_title %}Профиль {{member.username}}{% endblock %}
+{% load static %}
+{% block content %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% if request.user.id == member.id %}
+<section class="edit_user">
+  <a href="{% url 'create_profile' %}">Изменить профиль</a>
+  <br>
+  <a href="{% url 'account' %}">Изменить данные профиля</a>
+</section>
+{% else %}
+<section class="edit_user">
+<h3>Написать пользователю {{member.username}}</h3>
+<hr>
+<form method="POST">
+    {% csrf_token %}
+    {% if current_user %}
+    {% else %}
+    {{ message_form.message_content }}
+    <br>
+    <input type="submit" value="Отправить" name="message_submit">
+    {% endif %}
+</form>
+</section>
+{% endif %}
+
+<section class="about_user">
+    <h2>Логин: {{member.username}}</h2>
+    <h3>Возраст: {{member.profile.age}}</h3>
+    <p>Биография:</p>
+    <p>{{member.profile.bio}}</p>
+    <table>
+        <tr>
+            <td>E-mail:</td>
+            <td>{{request.user.email}}</td>
+        </tr>
+        <tr>
+            <td>Город:</td>
+            <td>{{member.profile.location}}</td>
+        </tr>
+        <tr>
+            <td>Пол:</td>
+            <td>{{member.profile.gender|title}}</td>
+        </tr>
+        <tr>
+            <td>Длина волос:</td>
+            <td>{{member.profile.hair_length|title}}</td>
+        </tr>
+        <tr>
+            <td>Цвет волос:</td>
+            <td>{{member.profile.hair_colour|title}}</td>
+        </tr>
+        <tr>
+            <td>Национальность:</td>
+            <td>{{member.profile.ethnicity|title}}</td>
+        </tr>
+        <tr>
+            <td>Статус:</td>
+            <td>{{member.profile.relationship_status|title}}</td>
+        </tr>
+        <tr>
+            <td>Образование:</td>
+            <td>{{member.profile.education|title}}</td>
+        </tr>
+        <tr>
+            <td>Рост:</td>
+            <td>{{height}}</td>
+        </tr>
+        <tr>
+            <td>Телосложение:</td>
+            <td>{{member.profile.body_type|title}}</td>
+        </tr>
+        <tr>
+            <td>Дети:</td>
+            <td>{% if member.profile.children %}Yes{%else%}No{%endif%}</td>
+        </tr>
+        <tr>
+            <td>В поисках:</td>
+            <td>{%if member.profile.looking_for == "BOTH" %}Men & Women{% else %}{{member.profile.looking_for|title}}{% endif %}</td>
+        </tr>
+    </table>
+</section>
+{% endblock %}

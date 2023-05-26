@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_title %}Редактирование аккаунта{% endblock %}
+{% block content %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/account.css' %}">
+{% endblock %}
+
+<div class="about_user">
+  <p class="h1_index_reg">Изменить пароль</p>
+  <form class="standard-form" method="POST">
+      {% csrf_token %}
+      {% for field in password_form %}
+      <div class="registration_fields">
+        <label >{{ field.label }}</label>
+                  {{ field }}
+      </div>
+      {% endfor %}
+      <input type="submit" class="submit-success" name="password-change-submit" />
+  </form>
+</div>
+
+<div class="edit_user">
+    <p class="h1_index_reg">Изменить данные пользователя</p>
+    <form class="standard-form" method="POST">
+        {% csrf_token %}
+        {% for field in user_form %}
+        <div class="registration_fields">
+          <label >{{ field.label }}</label>
+                    {{ field }}
+        </div>
+        {% endfor %}
+
+        <input type="submit" class="submit-success" name="account-change-submit" />
+    </form>
+</div>
+{% endblock %}

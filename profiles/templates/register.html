@@ -1,0 +1,21 @@
+{% extends 'base_preregister.html' %}
+{% block page_title %}Зарегистрироваться{% endblock %}
+
+{% block content %}
+<section class="registration_form">
+  <div>
+        <h3>Зарегистрировать аккаунт</h3>
+        <hr>
+        <form class="standard-form" method="POST">
+          {% csrf_token %}
+          {% for field in registration_form %}
+          <div class="registration_fields">
+            <label >{{ field.label }}</label>
+                      {{ field }}
+          </div>
+          {% endfor %}
+          <button type="submit" class="registration_button">Зарегистрироваться</button>
+        </form>
+  </div>
+</section>
+{% endblock %}

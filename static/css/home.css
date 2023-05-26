@@ -1,0 +1,40 @@
+body {
+  background-color: #D8BFD8;
+}
+
+.h1_index_reg {
+  padding-top: 40px;
+  color: black;
+  font-size: 50px;
+  text-align: center;
+}
+
+.about_user {
+  position: absolute;
+  top:  40%;
+  left: 30%;
+  width: 600px;
+  transform: translate(-50%,-50%);
+  background-color: black;
+  color: white;
+  padding: 20px 20px 20px 20px;
+  border-radius: 20px;
+  font-size: 20px;
+}
+
+.edit_user {
+  position: absolute;
+  top:  40%;
+  left: 60%;
+  transform: translate(-50%,-50%);
+  background-color: black;
+  color: white;
+  padding: 20px 20px 20px 20px;
+  border-radius: 20px;
+  font-size: 20px;
+}
+
+a {
+  color: white;
+  font-size: 20px;
+}

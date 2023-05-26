@@ -1,0 +1,27 @@
+body {
+  background-color: #D8BFD8;
+}
+
+.h1_index_reg {
+  padding-top: 40px;
+  color: black;
+  font-size: 50px;
+  text-align: center;
+}
+
+.reg_index_p {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.second_section {
+  position: absolute;
+  top:  50%;
+  left: 13%;
+  transform: translate(-50%,-50%);
+  background-color: black;
+  color: white;
+  padding: 20px 20px 20px 20px;
+  border-radius: 20px;
+  font-size: 20px;
+}

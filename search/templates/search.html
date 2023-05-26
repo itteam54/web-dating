@@ -1,0 +1,84 @@
+{%extends 'base.html'%}
+{% load static %}
+{%block page_title%}Поиск{%endblock%}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/search.css' %}">
+{% endblock %}
+{%block content%}
+
+<form class="first_section" method="GET">
+  <div class="">
+    Минимальный рост
+    <br>
+    <input {% if min_height %}data-min-height="{{min_height}}" {%endif%} title="Min Height" data-container="body" name="height_min"></input>
+  </div>
+  <div class="">
+    Максимальный рост
+    <br>
+    <input {% if max_height %}data-max-height="{{max_height}}" {%endif%} title="Max Height" name="height_max"></input>
+  </div>
+  <div class="">
+    Цвет волос
+    {{ filtered_result.form.hair_colour }}
+    <br>
+  </div>
+  <div class="">
+    Длина волос
+    {{ filtered_result.form.hair_length }}
+    <br>
+  </div>
+  <div class="">
+    Телосложение
+    {{ filtered_result.form.body_type }}
+    <br>
+  </div>
+  <div class="">
+    Национальность
+    {{ filtered_result.form.ethnicity }}
+    <br>
+  </div>
+  <div class="">
+    Отношения (статус)
+    {{ filtered_result.form.relationship_status }}
+    <br>
+  </div>
+  <div class="">
+    Образование
+    {{ filtered_result.form.education }}
+    <br>
+  </div>
+  <br>
+  <input class="butt" type="submit"></input>
+  <a class="butt" href="{% url 'search' %}">Обновить</a>
+</form>
+
+<div class="second_section">
+  {% if not search_page %}
+  <p class="centered-text">Нет подходящих кандидатов. Попробуйте изменить фильтры.</p>
+  {% endif %}
+  {% for profile in search_page %}
+    <div style="  background-image: url({% static 'temp/profile-placeholder.png' %});
+      width: 380px;
+      height: 380px;
+      background-size: 100% 100%;"></div>
+    <p>Имя: {{profile.user.username}}</p>
+    <p>Возраст: {{profile.age}}</p>
+    <div class="search_buttons">
+      <a href="{% url 'member_profile' profile.user.id %}" class="butt">Перейти в профиль</a>
+      <a class="butt" onclick="return send_wink_grid_link({{profile.user.id}})">Подмигнуть</a>
+    </div>
+  {% endfor %}
+</div>
+
+<div class="paginator">
+    {% if search_page %} {% for search in search_page %} {% endfor %} {% if search_page.has_previous %}
+    <a href="?page={{ search_page.previous_page_number }}">Предыдущая</a>
+    {% endif %}
+
+    <span data-page={{page}} class="current">
+    Страница {{ search_page.number }} из {{ search_page.paginator.num_pages }}
+    </span>
+    {% if search_page.has_next %}
+    <a href="?page={{ search_page.next_page_number }}">Следующая ></a> {% endif %} {% endif %}
+</div>
+{% endblock %}

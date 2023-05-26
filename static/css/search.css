@@ -1,0 +1,75 @@
+body {
+  background-color: #D8BFD8;
+}
+
+.h1_index_reg {
+  padding-top: 40px;
+  color: black;
+  font-size: 50px;
+  text-align: center;
+}
+
+.first_section {
+  position: absolute;
+  top:  400px;
+  left: 300px;
+  transform: translate(-50%,-50%);
+  background-color: black;
+  color: white;
+  padding: 20px 20px 20px 20px;
+  border-radius: 20px;
+  font-size: 20px;
+}
+
+.second_section {
+  position: absolute;
+  top:  360px;
+  left: 800px;
+  transform: translate(-50%,-50%);
+  background-color: black;
+  color: white;
+  padding: 20px 20px 20px 20px;
+  border-radius: 20px;
+  font-size: 20px;
+}
+
+.third_section {
+  position: absolute;
+  top:  900px;
+  left: 400px;
+  margin-top: 30px;
+  margin-left: 30px;
+  font-size: 20px;
+}
+
+.paginator {
+  margin-top: 30px;
+  margin-left: 30px;
+  font-size: 20px;
+  position: absolute;
+  top:  640px;
+  left: 560px;
+  color: black;
+}
+
+.butt, input[type=submit] {
+  padding: 5px 5px 5px 5px;
+  margin-top: 20px;
+  border-radius: 10px;
+  font-size: 20px;
+  background-color: red;
+  color: white;
+  border-color: white;
+  border-width: medium;
+  border-style: solid;
+}
+
+.search_buttons {
+  margin-bottom: 20px;
+}
+
+.profile_image {
+  background-image: url(../temp/profile-placeholder.png);
+  width: 180px;
+  height: 180px;
+}

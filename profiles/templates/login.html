@@ -1,0 +1,22 @@
+{% extends 'base_preregister.html' %}
+{% block page_title %}Вход{% endblock %}
+
+{% block content %}
+<section class="registration_form">
+    <div>
+      <h3>Войти в аккаунт</h3>
+      <hr>
+      <form method="POST">
+          {% csrf_token %}
+          {% for field in login_form %}
+          <div class="registration_fields">
+            <label >{{ field.label }}</label>
+                      {{ field }}
+          </div>
+          {% endfor %}
+          <button type="submit" class="registration_button">Войти</button>
+      </form>
+      <p>Забыли пароль? <a href="{% url 'password_reset' request.user.id %}">Восстановить</a></p>
+    </div>
+</section>
+{% endblock %}

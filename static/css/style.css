@@ -1,0 +1,221 @@
+nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  padding: 10px 10px 10px 10px;
+  background-image: linear-gradient(black 70%, transparent);;
+  font-size: 18px;
+}
+
+.logout {
+  position: absolute;
+  top: 10px;
+  right: 30px;
+  color: black;
+  text-decoration-color: black;
+  background-color: white;
+  padding: 5px 10px 5px 10px;
+  margin-top: 5px;
+  border-radius: 20px;
+}
+
+.member_profile {
+  position: absolute;
+  top: 10px;
+  right: 130px;
+  color: black;
+  text-decoration-color: black;
+  background-color: white;
+  padding: 5px 10px 5px 10px;
+  margin-top: 5px;
+  border-radius: 20px;
+}
+
+.chat_home {
+  position: absolute;
+  top: 10px;
+  left: 70px;
+  color: black;
+  text-decoration-color: black;
+  background-color: white;
+  padding: 5px 10px 5px 10px;
+  margin-top: 5px;
+  border-radius: 20px;
+}
+
+.winks {
+  position: absolute;
+  top: 10px;
+  left: 140px;
+  color: black;
+  text-decoration-color: black;
+  background-color: white;
+  padding: 5px 10px 5px 10px;
+  margin-top: 5px;
+  border-radius: 20px;
+}
+
+.views {
+  position: absolute;
+  top: 10px;
+  left: 330px;
+  color: black;
+  text-decoration-color: black;
+  background-color: white;
+  padding: 5px 10px 5px 10px;
+  margin-top: 5px;
+  border-radius: 20px;
+}
+
+.search {
+  position: absolute;
+  top: 10px;
+  left: 480px;
+  color: black;
+  text-decoration-color: black;
+  background-color: white;
+  padding: 5px 10px 5px 10px;
+  margin-top: 5px;
+  border-radius: 20px;
+}
+
+.signup {
+  position: absolute;
+  top: 10px;
+  right: 30px;
+  color: black;
+  text-decoration-color: black;
+  background-color: white;
+  padding: 5px 10px 5px 10px;
+  margin-top: 5px;
+  border-radius: 20px;
+}
+
+.signin {
+  position: absolute;
+  top: 10px;
+  right: 210px;
+  color: black;
+  text-decoration-color: black;
+  background-color: white;
+  padding: 5px 10px 5px 10px;
+  margin-top: 5px;
+  border-radius: 20px;
+}
+
+.content {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  background-image: url(../temp/prereg_back.png);
+  background-size: 100% 100%;
+  height: 1100px;
+  left: 0px;
+}
+
+.content_registered {
+  position: absolute;
+  top: 60px;
+  left: 0px;
+  width: 100%;
+  background-size: 100% 100%;
+  height: 1000px;
+  left: 0px;
+}
+
+p {
+    margin: 15px 0;
+}
+
+.h1_index {
+  padding-top: 180px;
+  color: white;
+  font-size: 50px;
+  text-align: center;
+}
+
+.reg_index_p {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.reg_index {
+  color: black;
+  background-color: white;
+  border-radius: 20px;
+  font-size: 30px;
+  padding: 10px 10px 10px 10px;
+}
+
+footer {
+  position: absolute;
+  top: 1055px;
+  left: 0px;
+  width: 100%;
+  background-color: black;
+  color: white;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+}
+
+.div_top_hypers {
+  background-color:#eeeeee;
+  display:inline;
+}
+
+.ul_top_hypers li{
+  padding: 10px 10px 10px 10px;
+  display: inline;
+}
+
+.about_p {
+  position: relative;
+  left: 51px;
+}
+
+.registration_form {
+  position: absolute;
+  top:  40%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background-color: black;
+  color: white;
+  padding: 5px 10px 5px 10px;
+  margin-top: 5px;
+  border-radius: 20px;
+  font-size: 20px;
+}
+
+input[type=text], input[type=password], input[type=email] {
+  padding:5px;
+  border:2px solid #ccc;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+input[type=text]:focus {
+  border-color:#333;
+}
+
+
+.registration_fields {
+  padding: 10px 10px 10px 10px;
+}
+
+.registration_button, input[type=submit] {
+  padding: 5px 5px 5px 5px;
+  margin-top: 20px;
+  border-radius: 10px;
+  font-size: 20px;
+  background-color: red;
+  color: white;
+  border-color: white;
+  border-width: medium;
+  border-style: solid;
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+      <meta charset="UTF-8">
+      <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+      <title>{% block page_title %}{% endblock %}</title>
+  </head>
+  <body>
+      <div  class="content">
+          <!--Not logged in navbar-->
+          <nav>
+              <a href="{% url 'index' %}">
+                <img src="{% static 'temp/home_icon.png' %}" alt="Not found!">
+              </a>
+              <div>
+                  <a class="signup" href="{% url 'register' %}">Зарегистрироваться</a>
+                  <a class="signin" href="{% url 'login' %}">Войти</a>
+              </div>
+          </nav>
+          <!--Page's content-->
+          <div>
+            {% block content %} {% endblock %}
+          </div>
+          <!--Footer-->
+          <footer>
+            <div class="div_top_hypers">
+              <ul class="ul_top_hypers">
+                  <!--Можно заменить на точные ссылки-->
+                  <!--Атрибут target="_blank" позволяет открыть страницу в новом окне-->
+                  <li><a href="https://vk.com/" target="_blank"><img class="icon" src="{% static 'temp/vk_icon.png' %}" alt="Not found!"></a></li>
+                  <li><a href="https://web.telegram.org/" target="_blank"><img class="icon" src="{% static 'temp/tg_icon.png' %}" alt="Not found!"></a></li>
+                  <li><a href="https://instagram.com" target="_blank"><img class="icon" src="{% static 'temp/inst_icon.png' %}" alt="Not found!"></a></li>
+              </ul>
+            </div>
+            <p class="about_p">Сайт знакомств, 2023</p>
+          </footer>
+      </div>
+  </body>
+</html>
