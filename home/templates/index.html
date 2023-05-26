@@ -1,0 +1,12 @@
+{%extends 'base_preregister.html'%}
+{% load static %}
+{%block page_title%}Главная{%endblock%}
+{%block content%}
+
+<section>
+    <p class="h1_index">Начни знакомиться сейчас!</p>
+    <p class="reg_index_p">
+        <a class="reg_index" href="{% url 'register' %}" role="button">Начать пользоваться</a>
+    </p>
+</section>
+{%endblock%}

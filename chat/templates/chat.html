@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load chatextras %}
+{% block page_title %}Чат{% endblock %}
+{% block content %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/chat.css' %}">
+{% endblock %}
+
+<div class="card">
+  {% if messages_page %}
+  <!--Все сообщения с выбранным пользователем-->
+  {% for message in messages_page %}
+      <p><b>{{ message.sender }} >> {{ message.message_content }}</b></p>
+      <p><em>Отправлено {{ message.created_on| date:"d M Y H:i"}}</em></p>
+  {% endfor %}
+      <!--Форма отправки сообщения-->
+      <form method="POST">
+          {% csrf_token %}
+          {{ message_form.message_content }}
+          <br>
+          <a class="butt" href="{% url 'member_profile' receiver %}">Посмотреть профилль</a>
+          <a class="butt" onclick="send_wink_grid_link({{message.sender.id}})">Подмигнуть</a>
+          <input type="submit" value="Отправить" />
+      </form>
+    {% endif %}
+</div>
+<!--Делит весь список на части и показывает заранее указанное количество профилей (3)-->
+<div class="paginator">
+    {% if messages_page %}
+    {% for view in messages_page %} {% endfor %}
+    {% if messages_page.has_previous %}
+    <a href="?page={{ messages_page.previous_page_number }}"> Предыдущая</a>
+    {% endif %}
+
+    <span data-page={{page}} class="current">
+    Страница {{ messages_page.number }} из {{ messages_page.paginator.num_pages }}
+    </span>
+    {% if messages_page.has_next %}
+            <a href="?page={{ messages_page.next_page_number }}">Следующая ></a>
+    {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

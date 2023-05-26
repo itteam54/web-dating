@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load chatextras %}
+{% block page_title %}Подмигивания{% endblock %}
+{% block content %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/chat.css' %}">
+{% endblock %}
+
+<!--Вывод всех людей, подмигнувших пользователя-->
+<div>
+  {% if winks_page %}
+  <div class="h1_index_reg">
+      Вам подмигнули:
+  </div>
+  {% for wink in winks_page %}
+  <div class="card">
+    <div>
+            <p>{{wink.sender.username}}</p>
+            <p>{{wink.sender.age}}</p>
+            <p>{{wink.created_on | date:"d M Y H:i"}}</p>
+    </div>
+    <a class="butt" href="{% url 'member_profile' wink.sender.id %}">Посмотреть пользователя</a>
+    <button class="butt" onclick="send_wink_grid_link({{wink.sender.id}})">Подмигнуть</button>
+  </div>
+  {% endfor %}
+  {% else %}
+      <div>
+          <p class="h1_index_reg">Нет подмигиваний :(</p>
+          <p class="reg_index_p"><a href="{% url 'index' %}">Перейти к поиску</a></p>
+      </div>
+  {% endif %}
+</div>
+<!--Делит весь список на части и показывает заранее указанное количество профилей (3)-->
+<div class="paginator">
+    {% if winks_page %}
+    {% for view in winks_page %} {% endfor %}
+    {% if winks_page.has_previous %}
+    <a href="?page={{ winks_page.previous_page_number }}"> Предыдущая</a>
+    {% endif %}
+
+    <span data-page={{page}} class="current">
+    Страница {{ winks_page.number }} из {{ winks_page.paginator.num_pages }}
+    </span>
+    {% if winks_page.has_next %}
+            <a href="?page={{ winks_page.next_page_number }}">Следующая ></a>
+    {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

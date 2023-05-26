@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load chatextras %}
+{% block page_title %}Просмотры{% endblock %}
+{% block content %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/chat.css' %}">
+{% endblock %}
+
+<!--Вывод всех людей, просматривавших провиль пользователя-->
+<div>
+    {% if views_page %}
+    <div class="h1_index_reg">
+        Ваш аккаунт просматривали:
+    </div>
+    {% for view in views_page %}
+    <div class="card">
+      <div>
+        <p>{{view.sender.username}}</p>
+        <p>{{view.sender.age}}</p>
+        <p>{{view.created_on | date:"d M Y H:i"}}</p>
+      </div>
+      <a class="butt" href="{% url 'member_profile' view.sender.id %}">Посмотреть пользователя</a>
+      <button class="butt" onclick="send_wink_grid_link({{view.sender.id}})">Подмигнуть</button>
+    </div>
+    {% endfor %}
+    {% else %}
+      <p class="h1_index_reg">Нет просмотров :(</p>
+      <p class="reg_index_p"><a href="{% url 'index' %}">Перейти к поиску</a></p>
+    {% endif %}
+</div>
+
+<!--Делит весь список на части и показывает заранее указанное количество профилей (3)-->
+<div class="paginator">
+    {% if views_page %}
+    {% for view in views_page %} {% endfor %}
+    {% if views_page.has_previous %}
+    <a href="?page={{ views_page.previous_page_number }}"> Предыдущая</a>
+    {% endif %}
+
+    <span data-page={{page}} class="current">
+    Страница {{ views_page.number }} из {{ views_page.paginator.num_pages }}
+    </span>
+    {% if views_page.has_next %}
+            <a href="?page={{ views_page.next_page_number }}">Следующая ></a>
+    {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

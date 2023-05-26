@@ -1,0 +1,40 @@
+{%extends 'base.html'%}
+{% load static from static %}
+{%block page_title%}Домашняя{%endblock%}
+{%block content%}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/verif.css' %}">
+{% endblock %}
+
+<div>
+    <p class="h1_index_reg">Выбери половинку</p>
+    <p class="reg_index_p">Для выбора необходимо нажимать на кнопки под фото</p>
+
+    <div>
+        {% if card_profiles_exists %}
+        <p class="reg_index_p">Продолжайте поиск ;)</p>
+        <p class="reg_index_p"><a href="{% url 'search' %}">Добавить профили</a></p>
+        {% else %}
+        <p class="reg_index_p">На данный момент нет подходящих вариантов :(</p>
+        <p class="reg_index_p"><a class="reg_index_p" href="{% url 'search' %}" class="">Изменить требования</a></p>
+        {% endif %}
+    </div>
+
+
+    {% for profile in card_profiles %}
+    <div class="second_section">
+        <div class="" style="background-image: url(../../static/temp/profile-placeholder.png)"></div>
+        <div class="">
+            <p class="">{{profile.user.username}}</p>
+            <p class="">{{profile.age}} лет</p>
+        </div>
+    </div>
+
+    <div>
+        <a class="" href="{% url 'member_profile' profile.user.id %}">
+            <p>Просмотреть профиль {{profile.user.username | upper}}</p>
+        </a>
+    </div>
+    {%endfor%}
+</div>
+{%endblock%}
