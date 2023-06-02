@@ -1,5 +1,5 @@
 from django.shortcuts import render, reverse, redirect
-from .forms import MessageForm
+from .forms import MessageForm, WinkForm
 from .models import Conversations, Messages, Winks, Views
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -49,29 +49,15 @@ def winks(request, id):
     return render(request, 'winks.html', context)
 
 # Подмигнуть пользователю
+@login_required
 def wink(request, id):
-    receiver_id = request.GET.get('receiver_id')
-    if receiver_id == id:
-        data = {}
-        data['message'] = "Нельзя подмигнуть самому себе!"
-        return JsonResponse(data)
-    current_wink = Winks.objects.filter(Q(receiver_id=receiver_id) & Q(sender_id=request.user.id) & Q(is_read=False)).exists()
-    if current_wink:
-        data = {}
-        data['message'] = "Еще не просмотрено пользователем"
-        return JsonResponse(data)
+    wink_form = WinkForm()
+    wink = wink_form.save(commit=False)
+    wink.receiver = User.objects.get(id=id)
+    wink.sender = request.user
+    wink.save()
 
-    wink = Winks(receiver=User.objects.get(pk=receiver_id), sender=request.user)
-    data = {}
-    try:
-        wink.save()
-    except:
-        data['message'] = 'Что-то пошло не так. Повторите попытку.'
-        print('not delivered')
-    finally:
-        print('all ok')
-        data['message'] = 'Успешно отправлено.'
-    return JsonResponse(data)
+    return render(request, 'winked.html')
 
 # Страница просмотров
 @login_required
@@ -165,3 +151,14 @@ def chat(request, id):
         'messages_page': messages_page
     }
     return render(request, 'chat.html', context)
+
+
+@login_required
+def get_wink(request, id):
+    wink_form = WinkForm()
+    wink = wink_form.save(commit=False)
+    wink.receiver = User.objects.get(id=id)
+    wink.sender = request.user
+    wink.save()
+
+    return render(request, 'winks.html')

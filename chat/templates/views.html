@@ -21,7 +21,7 @@
         <p>{{view.created_on | date:"d M Y H:i"}}</p>
       </div>
       <a class="butt" href="{% url 'member_profile' view.sender.id %}">Посмотреть пользователя</a>
-      <button class="butt" onclick="send_wink_grid_link({{view.sender.id}})">Подмигнуть</button>
+      <a class="butt" href="{% url 'wink' view.sender.id %}">Подмигнуть</a>
     </div>
     {% endfor %}
     {% else %}

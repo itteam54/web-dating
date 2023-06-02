@@ -37,27 +37,5 @@
         </div>
         <p class="about_p">Сайт знакомств, 2023</p>
       </footer>
-    <script>
-        function send_wink_grid_link(receiver_id) {
-            $.ajax({
-                url: "chat/wink/",
-                datatype: 'json',
-                data: {
-                    receiver_id: receiver_id
-                },
-                success: function(json) {
-                    $('.toast-container').html('')
-                    $('.toast-container').html(
-                        '<div data-delay="4000"><div><strong><i></i> Attention</strong><button type="button" data-dismiss="toast">&times;</button></div><div>' + json['message'] + '</div></div>'
-                        );
-                    $(".toast").toast('show', {
-                        autohide: false,
-                    });
-                    console.log("all ok");
-                }
-            })
-            console.log("all ok");
-        }
-    </script>
   </body>
 </html>

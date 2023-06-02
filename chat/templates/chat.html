@@ -20,7 +20,7 @@
           {{ message_form.message_content }}
           <br>
           <a class="butt" href="{% url 'member_profile' receiver %}">Посмотреть профилль</a>
-          <a class="butt" onclick="send_wink_grid_link({{message.sender.id}})">Подмигнуть</a>
+          <a class="butt" href="{% url 'wink' receiver %}">Подмигнуть</a>
           <input type="submit" value="Отправить" />
       </form>
     {% endif %}

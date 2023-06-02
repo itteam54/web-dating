@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_title %}Верификация{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/verif.css' %}">
+{% endblock %}
+{% block content %}
+
+<section>
+      <p class="h1_index_reg">Отправлено!</p>
+      <p class="reg_index_p">Ваше подмигивание было успешно отправлено. Можете продолжить поиск.</p>
+      <p class="reg_index_p"><a class="" href="{% url 'index' %}">Начать поиск</a></p>
+</section>
+{% endblock %}

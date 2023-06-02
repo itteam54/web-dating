@@ -57,15 +57,22 @@
   <p class="centered-text">Нет подходящих кандидатов. Попробуйте изменить фильтры.</p>
   {% endif %}
   {% for profile in search_page %}
+    {% if profile.user.profileimage_set.first.image %}
+    <div style="background-image: url( {{ MEDIA_URL }}{{profile.user.profileimage_set.first.image.url}});
+      width: 380px;
+      height: 380px;
+      background-size: 100% 100%;" ></div>
+    {% else %}
     <div style="  background-image: url({% static 'temp/profile-placeholder.png' %});
       width: 380px;
       height: 380px;
       background-size: 100% 100%;"></div>
+    {% endif %}
     <p>Имя: {{profile.user.username}}</p>
     <p>Возраст: {{profile.age}}</p>
     <div class="search_buttons">
       <a href="{% url 'member_profile' profile.user.id %}" class="butt">Перейти в профиль</a>
-      <a class="butt" onclick="return send_wink_grid_link({{profile.user.id}})">Подмигнуть</a>
+      <a class="butt" href="{% url 'wink' profile.user.id %}">Подмигнуть</a>
     </div>
   {% endfor %}
 </div>
